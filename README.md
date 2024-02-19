@@ -202,14 +202,16 @@ modifications of Viewflow. You can find the commercial license terms in
 
 ## Changelog
 
-2.0.0.b5 2023-07-10
--------------------
+### 2.0.0.b8 2023-09-29
 
-- Alow attach layout to forms in default form rendering template
-- Fix subprocess node activation
-- Added db indexes for workflow models
-- Improve workflow REST API support
-
+- Fixed default values for jsonstore fields in forms.
+- Pre-built workflow views now accept the layout option for forms.
+- Improved success redirects for workflow action views.
+- Enabled the 'Undo' action for celery.Job.
+- Extended celery.Job activation to allow its use within the start and end tasks of celery.chord.
+- Stored error traces and local variables in task.data JSON for failed celery.Job tasks.
+- Enhanced handling of obsolete nodes.
+- Fixed the JS calendar date shift issue for time zones with negative time offsets.
 
 
 [build]: https://img.shields.io/github/actions/workflow/status/viewflow/viewflow/django.yml?branch=main

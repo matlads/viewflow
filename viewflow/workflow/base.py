@@ -1,7 +1,6 @@
 import copy
 from collections import defaultdict
 from textwrap import dedent
-from urllib.parse import non_hierarchical
 
 from django.apps import apps
 from django.db import transaction
@@ -118,7 +117,6 @@ class Node(Viewset):
         return super(Node, self).__str__()
 
     def _resolve(self, instance):
-
         """Node class should resolve other nodes this-references here.
 
         Called as soon as node instances infatuated, but before
@@ -187,6 +185,7 @@ class Node(Viewset):
         :return: A list of available actions as a tuple of (name, url).
         :rtype: list
         """
+        # fmt: off
         transitions = activation.get_available_transitions(user)
         for transition in transitions:
             try:
@@ -337,7 +336,7 @@ class Flow(Viewset, metaclass=FlowMetaClass):
             from .nodes import Obsolete
 
             obsolete_factory = self._nodes_by_name.get("obsolete", Obsolete())
-            node = obsolete_factory.create_node(name)
+            node = obsolete_factory.create_node(name, flow_class=self.__class__)
         return node
 
     def has_view_permission(self, user, obj=None):
